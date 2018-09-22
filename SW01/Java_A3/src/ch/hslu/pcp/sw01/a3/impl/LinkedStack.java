@@ -1,21 +1,21 @@
 package ch.hslu.pcp.sw01.a3.impl;
 
-import ch.hslu.pcp.sw01.a3.interfaces.Element;
+import ch.hslu.pcp.sw01.a3.interfaces.Linkable;
 import ch.hslu.pcp.sw01.a3.interfaces.Stack;
 
-public final class StackImpl implements Stack {
+public final class LinkedStack<T extends Linkable<T>> implements Stack<T> {
 
     private static final String PRINT_EMPTY     = "print - Stack is empty";
     private static final String PRINT_CONTAINS  = "print - Stack contains: ";
     private static final String PRINT_TOP       = "top Element = ";
 
-    private Element top;
+    private T top;
 
-    StackImpl() {
+    LinkedStack() {
     }
 
     @Override
-    public void push(Element e) {
+    public void push(T e) {
         if(this.top != null) {
             e.setNext(this.top);
         }
@@ -23,7 +23,7 @@ public final class StackImpl implements Stack {
     }
 
     @Override
-    public Element top() {
+    public T top() {
         return this.top;
     }
 
@@ -43,7 +43,7 @@ public final class StackImpl implements Stack {
             return;
         }
         final StringBuilder builder = new StringBuilder(PRINT_CONTAINS);
-        Element current = this.top;
+        T current = this.top;
         while(current != null) {
             builder.append(current.toString());
             builder.append(", ");
@@ -62,7 +62,7 @@ public final class StackImpl implements Stack {
     @Override
     public int size() {
         int counter = 0;
-        Element current = this.top;
+        T current = this.top;
         while(current != null) {
             counter += 1;
             current = current.getNext();
