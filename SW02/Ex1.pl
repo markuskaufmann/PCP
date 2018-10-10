@@ -29,6 +29,10 @@ grandmother(X, Y) :-
     mother(X, Z),
     parent(Z, Y).
 
+grandfather(X, Y) :-
+    father(X, Z),
+    parent(Z, Y).
+
 % d)
 offspring(Y, X) :- parent(X, Y).
 offspring(Y, X) :-
